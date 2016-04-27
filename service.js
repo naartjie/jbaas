@@ -1,6 +1,7 @@
 const Promise = require('bluebird')
 const express = require('express')
 const {exec} = require('child_process')
+const {version} = require('./package.json')
 const app = express()
 
 app.get('/health', (req, res) => res.send('ok'))
@@ -12,9 +13,10 @@ app.use('/', (req, res) => {
   // .delay(200)
   .then(hostname => hostname.trim())
   .then(hostname => res.json({
+    hostname,
+    version,
     what: 'service-1',
     when: new Date(),
-    hostname,
   }))
 
 })
