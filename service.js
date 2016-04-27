@@ -1,6 +1,4 @@
-import Promise from 'bluebird'
-
-// const Promise = require('bluebird')
+const Promise = require('bluebird')
 const express = require('express')
 const {exec} = require('child_process')
 const app = express()
