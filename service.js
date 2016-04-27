@@ -15,7 +15,6 @@ app.use('/', (req, res) => {
     what: 'service-1',
     when: new Date(),
     hostname,
-    message: 'hi mom',
   }))
 
 })
