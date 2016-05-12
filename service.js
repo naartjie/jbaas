@@ -6,7 +6,11 @@ const {exec} = require('child_process')
 const {version} = require('./package.json')
 const app = express()
 
-app.get('/health', (req, res) => res.send('ok'))
+app.route('/health')
+  .get((req, res) => res.send('ok'))
+
+
+
 
 app.use('/', (req, res) => {
   console.log(`${req.method} ${req.url}`)
