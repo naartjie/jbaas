@@ -24,4 +24,7 @@ module.exports = [
   "There are two kinds of companies, those that work to try to charge more and those that work to charge less. We will be the second.",
   "I would never say no to something the team wanted to do, but I might say yes to something the team didn't want to do. You want there to be multiple ways to get to 'yes' because you want to encourage risk-taking.",
   "You can have the best technology, you can have the best business model, but if the storytelling isn't amazing, it won't matter. Nobody will watch.",
+  "What we need to do is always lean into the future; when the world changes around you and when it changes against you - what used to be a tail wind is now a head wind - you have to lean into that and figure out what to do because complaining isn't a strategy. Read more at: http://www.brainyquote.com/quotes/authors/j/jeff_bezos.html",
+  "If you're competitor-focused, you have to wait until there is a competitor doing something. Being customer-focused allows you to be more pioneering. Read more at: http://www.brainyquote.com/quotes/authors/j/jeff_bezos.html",
+  "I think that, ah, I'm a very goofy sort of person in many ways. Read more at: http://www.brainyquote.com/quotes/authors/j/jeff_bezos.html",
 ]

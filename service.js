@@ -21,11 +21,7 @@ app.route('/quotes/random')
     .then(hostname => {
       res.json({
         quote: quotes[Math.floor(Math.random() * quotes.length)],
-        que: '121',
-        what: 'service-1',
-        when: new Date(),
         hostname,
-        version,
       })
     })
   )
