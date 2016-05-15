@@ -16,22 +16,20 @@ app.route('/health')
   .get((req, res) => res.send('ok'))
 
 app.route('/quotes/random')
-  .get((req, res) => Promise.fromCallback(cb => exec('hostname', cb))
+  .get((req, res) => {
+    getIP()
     .delay(200)
-    .then(hostname => {
-      res.json({
-        quote: quotes[Math.floor(Math.random() * quotes.length)],
-        hostname,
-      })
-    })
-  )
+    .then(ip => res.json({
+      quote: quotes[Math.floor(Math.random() * quotes.length)],
+      ip,
+    }))
+  })
 
 app.use('/', (req, res) => {
-  Promise.fromCallback(cb => exec('hostname', cb))
+  getIP()
   .delay(200)
-  .then(hostname => hostname.trim())
-  .then(hostname => res.json({
-    hostname,
+  .then(ip => res.json({
+    ip,
     version,
     what: 'service-1',
     when: new Date(),
@@ -42,3 +40,8 @@ app.use('/', (req, res) => {
 app.listen(3000, () => {
   console.log('service-1 started on port 3000')
 })
+
+function getIP() {
+  const cmd = '/sbin/ifconfig eth0 | grep \'inet addr:\' | cut -d: -f2 | awk \'{ print $1}\''
+  return Promise.fromCallback(cb => exec(cmd, cb)).then(ip => ip.trim())
+}
