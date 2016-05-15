@@ -11,29 +11,20 @@ app.use('/', (req, res, next) => {
   next()
 })
 
-app.route('/health')
-  .get((req, res) => res.send('ok'))
-
-app.route('/quotes/random')
-  .get((req, res) => {
-    getIP()
-    .delay(200)
-    .then(ip => res.json({
-      quote: quotes[Math.floor(Math.random() * quotes.length)],
-      ip,
-    }))
-  })
+app.route('/health').get((req, res) => res.send('ok'))
 
 app.use('/', (req, res) => {
   getIP()
   .delay(200)
-  .then(ip => res.json({
-    ip,
-    version,
-    what: 'service-1',
-    when: new Date(),
-  }))
+  .then(ip => {
 
+    let quote = quotes[Math.floor(Math.random() * quotes.length)]
+    let {trim} = req.query
+
+    if (trim) quote = `${quote.slice(0, trim)}...`
+
+    res.json({ ip, quote })
+  })
 })
 
 app.listen(3000, () => {
