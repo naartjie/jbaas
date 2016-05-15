@@ -20,7 +20,7 @@ app.route('/quotes/random')
     .delay(200)
     .then(hostname => {
       res.json({
-        quote: 'Word. ' + quotes[Math.floor(Math.random() * quotes.length)],
+        quote: quotes[Math.floor(Math.random() * quotes.length)],
         hostname,
       })
     })
