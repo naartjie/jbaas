@@ -3,7 +3,6 @@
 const Promise = require('bluebird')
 const express = require('express')
 const {exec} = require('child_process')
-const {version} = require('./package.json')
 const quotes = require('./quotes')
 const app = express()
 
