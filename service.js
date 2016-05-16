@@ -24,7 +24,7 @@ app.use('/', (req, res) => {
 
     if (trim) quote = `${quote.slice(0, trim)}...`
 
-    res.json({ host, q3: quote })
+    res.json({ host, quote })
   })
 })
 
