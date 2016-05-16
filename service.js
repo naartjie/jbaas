@@ -7,6 +7,7 @@ const quotes = require('./quotes')
 const app = express()
 
 let running = true
+let host = ''
 
 app.use('/', (req, res, next) => {
   console.log(`${req.method} ${req.url}`)
@@ -16,22 +17,24 @@ app.use('/', (req, res, next) => {
 app.route('/health').get((req, res) => res.status(running ? 200 : 500).send(running ? 'ok' : 'not ok'))
 
 app.use('/', (req, res) => {
-  getHostInfo()
-  .delay(30)
-  .then(host => {
-
+  Promise.delay(20)
+  .then(() => {
     let quote = quotes[Math.floor(Math.random() * quotes.length)]
     let {trim} = req.query
 
     if (trim) quote = `${quote.slice(0, trim)}...`
 
-    res.json({ host, q2: quote })
+    res.json({ host, q3: quote })
   })
 })
 
 process.on('SIGINT', shutdown)
 
-app.listen(3000, () => console.log('service-1 started on port 3000'))
+getHostInfo()
+.then(hostInfo => {
+  host = hostInfo
+  app.listen(3000, () => console.log('service-1 started on port 3000'))
+})
 
 function shutdown() {
   running = false
