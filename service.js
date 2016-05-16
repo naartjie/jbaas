@@ -17,7 +17,7 @@ app.route('/health').get((req, res) => res.status(running ? 200 : 500).send(runn
 
 app.use('/', (req, res) => {
   getHostInfo()
-  .delay(30)
+  // .delay(30)
   .then(host => {
 
     let quote = 'Word. ' + quotes[Math.floor(Math.random() * quotes.length)]
