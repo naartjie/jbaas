@@ -17,7 +17,7 @@ app.route('/health').get((req, res) => res.status(running ? 200 : 500).send(runn
 
 app.use('/', (req, res) => {
   getHostInfo()
-  // .delay(30)
+  .delay(30)
   .then(host => {
 
     let quote = quotes[Math.floor(Math.random() * quotes.length)]
@@ -39,7 +39,7 @@ function shutdown() {
   setTimeout(() => {
     console.log('donesies...')
     process.exit()
-  }, 1100)
+  }, 5000)
 }
 
 function getHostInfo() {
