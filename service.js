@@ -45,5 +45,5 @@ function shutdown() {
 function getHostInfo() {
   // const cmd = '/sbin/ifconfig eth0 | grep \'inet addr:\' | cut -d: -f2 | awk \'{ print $1}\''
   const cmd = 'hostname'
-  return Promise.fromCallback(cb => exec(cmd, cb)).then(ip => ip.trim())
+  return Promise.fromCallback(cb => exec(cmd, cb)).then(info => info.trim().slice(-5))
 }
