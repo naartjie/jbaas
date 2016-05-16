@@ -39,7 +39,7 @@ function shutdown() {
   setTimeout(() => {
     console.log('donesies...')
     process.exit()
-  }, 5000)
+  }, 10000)
 }
 
 function getHostInfo() {
