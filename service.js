@@ -19,7 +19,7 @@ app.route('/health').get((req, res) => res.status(running ? 200 : 500).send(runn
 app.use('/', (req, res) => {
   Promise.delay(20)
   .then(() => {
-    let quote = 'Word. ' + quotes[Math.floor(Math.random() * quotes.length)]
+    let quote = quotes[Math.floor(Math.random() * quotes.length)]
     let {trim} = req.query
 
     if (trim) quote = `${quote.slice(0, trim)}...`
