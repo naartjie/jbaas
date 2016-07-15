@@ -33,7 +33,8 @@ process.on('SIGINT', shutdown)
 getHostInfo()
 .then(hostInfo => {
   host = hostInfo
-  app.listen(3000, () => console.log('service-1 started on port 3000'))
+  const port = process.env.PORT || 3000
+  app.listen(port, () => console.log(`jbaas service started on port ${port}`))
 })
 
 function shutdown() {
