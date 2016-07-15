@@ -4,6 +4,8 @@
     "start": "node service.js"
   },
   "dependencies": {
+    "@google/cloud-debug": "^0.8.3",
+    "@google/cloud-trace": "^0.5.4",
     "bluebird": "3.3.5",
     "express": "4.13.4"
   }
