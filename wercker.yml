@@ -18,6 +18,6 @@ docker-push:
     - internal/docker-push:
         username: $USERNAME
         password: $PASSWORD
-        tag: master
+        tag: latest
         repository: naartjie/jbaas
-        registry: https://registry.hub.docker.com
+        registry: https://registry.hub.docker.com/v2
