@@ -30,4 +30,4 @@ docker-push:
         username: _json_key
         password: $GCR_JSON_KEY_FILE
         repository: gcr.io/swarm-sandbox/jbaas
-        registry: https://gcr.io/v2
+        registry: https://gcr.io
