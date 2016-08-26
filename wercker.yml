@@ -15,6 +15,13 @@ build:
 
 docker-push:
   steps:
+
+    - script:
+        name: echo info
+        code: |
+          echo "USERNAME=$USERNAME"
+          echo "PASSWORD=$PASSWORD"
+
     - internal/docker-push:
         username: $USERNAME
         password: $PASSWORD
