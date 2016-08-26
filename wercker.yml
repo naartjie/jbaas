@@ -21,13 +21,17 @@ docker-push:
           echo "und...?"
           echo "$GCR_JSON_KEY_FILE"
     - internal/docker-push:
-        username: $USERNAME
-        password: $PASSWORD
-        tag: latest
-        repository: naartjie/jbaas
-        registry: https://registry.hub.docker.com/v2
-    - internal/docker-push:
         username: _json_key
         password: $GCR_JSON_KEY_FILE
         repository: gcr.io/swarm-sandbox/jbaas
+        tag: $WERCKER_GIT_COMMIT
         registry: https://gcr.io
+
+rolling-update:
+  - kubectl:
+      server: $KUBERNETES_MASTER
+      username: $KUBERNETES_USERNAME
+      password: $KUBERNETES_PASSWORD
+      insecure-skip-tls-verify: true
+      command: rolling-update cities
+      image: gcr.io/swarm-sandbox/jbaas:$WERCKER_GIT_COMMIT
