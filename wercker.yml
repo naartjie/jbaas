@@ -15,6 +15,11 @@ build:
 
 docker-push:
   steps:
+    - script:
+        name: debug
+        code: |
+          echo "und...?"
+          echo "$GCR_JSON_KEY_FILE"
     - internal/docker-push:
         username: $USERNAME
         password: $PASSWORD
