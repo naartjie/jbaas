@@ -15,16 +15,14 @@ build:
 
 docker-push:
   steps:
-
-    - script:
-        name: echo info
-        code: |
-          echo "USERNAME=$USERNAME"
-          echo "PASSWORD=$PASSWORD"
-
     - internal/docker-push:
         username: $USERNAME
         password: $PASSWORD
         tag: latest
         repository: naartjie/jbaas
         registry: https://registry.hub.docker.com/v2
+    - internal/docker-push:
+        username: _json_key
+        password: $GCR_JSON_KEY_FILE
+        repository: gcr.io/swarm-sandbox/jbaas
+        registry: https://gcr.io
