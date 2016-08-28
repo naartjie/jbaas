@@ -1,7 +1,7 @@
 'use strict'
 
-require('@google/cloud-trace').start({samplingRate: 500})
-require('@google/cloud-debug')
+// require('@google/cloud-trace').start({samplingRate: 500})
+// require('@google/cloud-debug')
 
 const Promise = require('bluebird')
 const express = require('express')
