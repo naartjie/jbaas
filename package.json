@@ -1,8 +1,8 @@
 {
   "name": "service-1",
   "scripts": {
-    "start": "node service.js",
-    "test": "node test.js"
+    "start": "node src/service.js",
+    "test": "node test/index.js"
   },
   "dependencies": {
     "@google/cloud-debug": "^0.8.3",
