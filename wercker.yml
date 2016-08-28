@@ -50,8 +50,10 @@ rolling-update:
   steps:
     - kubectl:
         server: $K8S_MASTER
-        username: _json_key
-        password: $GCR_JSON_KEY_FILE
+        username: $K8S_USERNAME
+        password: $K8S_PASSWORD
+        # username: _json_key
+        # password: $GCR_JSON_KEY_FILE
         insecure-skip-tls-verify: true
         command: rolling-update jbaas
         image: gcr.io/swarm-sandbox/jbaas:$WERCKER_GIT_COMMIT
