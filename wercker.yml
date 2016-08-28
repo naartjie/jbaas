@@ -53,7 +53,7 @@ rolling-update:
         username: $K8S_USERNAME
         password: $K8S_PASSWORD
         insecure-skip-tls-verify: true
-        command: set image deployments/jbaas gcr.io/swarm-sandbox/jbaas:$WERCKER_GIT_COMMIT
+        command: set image deployment/jbaas jbaas=gcr.io/swarm-sandbox/jbaas:$WERCKER_GIT_COMMIT
         # password: $GCR_JSON_KEY_FILE
         # username: _json_key
         # command: rolling-update jbaas
