@@ -47,10 +47,11 @@ docker-push:
         cmd: "npm start"
 
 rolling-update:
-  - kubectl:
-      server: $K8S_MASTER
-      username: _json_key
-      password: $GCR_JSON_KEY_FILE
-      insecure-skip-tls-verify: true
-      command: rolling-update jbaas
-      image: gcr.io/swarm-sandbox/jbaas:$WERCKER_GIT_COMMIT
+  steps:
+    - kubectl:
+        server: $K8S_MASTER
+        username: _json_key
+        password: $GCR_JSON_KEY_FILE
+        insecure-skip-tls-verify: true
+        command: rolling-update jbaas
+        image: gcr.io/swarm-sandbox/jbaas:$WERCKER_GIT_COMMIT
