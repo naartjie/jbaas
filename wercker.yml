@@ -22,13 +22,13 @@ docker-push:
         username: _json_key
         password: $GCR_JSON_KEY_FILE
         repository: gcr.io/swarm-sandbox/jbaas
-        tag: ${WERCKER_GIT_COMMIT:0:7}
+        tag: ${WERCKER_GIT_COMMIT}
         registry: https://gcr.io
     - internal/docker-push:
         username: $DOCKERCLOUD_USERNAME
         password: $DOCKERCLOUD_PASSWORD
         repository: naartjie/jbaas
-        tag: ${WERCKER_GIT_COMMIT:0:7}
+        tag: ${WERCKER_GIT_COMMIT}
         registry: https://registry.hub.docker.com/v2
 
 rolling-update:
