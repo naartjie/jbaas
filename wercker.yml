@@ -29,7 +29,7 @@ docker-push:
         password: $GCR_JSON_KEY_FILE
         repository: gcr.io/swarm-sandbox/jbaas
         registry: https://gcr.io
-        tag: ${WERCKER_GIT_COMMIT}
+        tag: ${WERCKER_GIT_COMMIT},${WERCKER_GIT_COMMIT:0:7},latest
         env: "PORT=8080"
         ports: "8080"
         cmd: "npm start"
@@ -39,7 +39,7 @@ docker-push:
         password: $DOCKERCLOUD_PASSWORD
         repository: naartjie/jbaas
         registry: https://registry.hub.docker.com/v2
-        tag: ${WERCKER_GIT_COMMIT}
+        tag: ${WERCKER_GIT_COMMIT},${WERCKER_GIT_COMMIT:0:7},latest
         env: "PORT=8080"
         ports: "8080"
         cmd: "npm start"
