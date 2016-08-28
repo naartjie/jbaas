@@ -29,7 +29,7 @@ app.use('/', (req, res) => {
     Promise.delay(20)
   ])
   .then(([version]) => {
-    let quote = 'word. ' + quotes[Math.floor(Math.random() * quotes.length)]
+    let quote = quotes[Math.floor(Math.random() * quotes.length)]
     let {trim} = req.query
 
     if (trim) quote = `${quote.slice(0, trim)}...`
