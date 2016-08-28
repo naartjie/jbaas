@@ -1,4 +1,4 @@
-box: node
+box: mhart/alpine-node
 
 build:
   steps:
@@ -14,7 +14,6 @@ build:
         code: cp -r src node_modules package.json VERSION.txt "$WERCKER_OUTPUT_DIR"
 
 docker-push:
-  box: mhart/alpine-node
   steps:
     - script:
         name: git sha version info
