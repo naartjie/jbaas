@@ -7,7 +7,10 @@ const Promise = require('bluebird')
 const express = require('express')
 const {exec} = require('child_process')
 const quotes = require('./quotes')
+const fs = Promise.promisifyAll(require('fs'))
+
 const app = express()
+const versionPromise = fs.readFileAsync(`${__dirname}/../VERSION.txt`, 'utf8').then(ver => ver.trim())
 
 let running = true
 let host = ''
@@ -18,16 +21,20 @@ app.use('/', (req, res, next) => {
 })
 
 app.route('/health').get((req, res) => res.status(running ? 200 : 500).send(running ? 'ok' : 'not ok'))
+app.route('/version').get((req, res) => versionPromise.then((version) => res.send(version)))
 
 app.use('/', (req, res) => {
-  Promise.delay(20)
-  .then(() => {
+  Promise.all([
+    versionPromise,
+    Promise.delay(20)
+  ])
+  .then(([version]) => {
     let quote = 'word. ' + quotes[Math.floor(Math.random() * quotes.length)]
     let {trim} = req.query
 
     if (trim) quote = `${quote.slice(0, trim)}...`
 
-    res.json({ host, quote })
+    res.json({ host, quote, version })
   })
 })
 
