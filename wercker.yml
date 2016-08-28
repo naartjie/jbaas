@@ -30,6 +30,7 @@ docker-push:
         repository: gcr.io/swarm-sandbox/jbaas
         registry: https://gcr.io
         tag: ${WERCKER_GIT_COMMIT},${WERCKER_GIT_COMMIT:0:7},latest
+        working-dir: "/app"
         env: "PORT=8080"
         ports: "8080"
         cmd: "npm start"
@@ -40,6 +41,7 @@ docker-push:
         repository: naartjie/jbaas
         registry: https://registry.hub.docker.com/v2
         tag: ${WERCKER_GIT_COMMIT},${WERCKER_GIT_COMMIT:0:7},latest
+        working-dir: "/app"
         env: "PORT=8080"
         ports: "8080"
         cmd: "npm start"
