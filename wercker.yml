@@ -9,6 +9,9 @@ build:
         code: |
           echo "node version $(node -v) running"
           echo "npm version $(npm -v) running"
+    - script:
+        name: copy artifact
+        code: cp src node_modules package.json VERSION.txt "$WERCKER_OUTPUT_DIR"
 
 docker-push:
   steps:
@@ -22,14 +25,20 @@ docker-push:
         username: _json_key
         password: $GCR_JSON_KEY_FILE
         repository: gcr.io/swarm-sandbox/jbaas
-        tag: ${WERCKER_GIT_COMMIT}
         registry: https://gcr.io
+        tag: ${WERCKER_GIT_COMMIT}
+        env: "PORT=8080"
+        ports: "8080"
+        cmd: "npm start"
     - internal/docker-push:
         username: $DOCKERCLOUD_USERNAME
         password: $DOCKERCLOUD_PASSWORD
         repository: naartjie/jbaas
-        tag: ${WERCKER_GIT_COMMIT}
         registry: https://registry.hub.docker.com/v2
+        tag: ${WERCKER_GIT_COMMIT}
+        env: "PORT=8080"
+        ports: "8080"
+        cmd: "npm start"
 
 rolling-update:
   - kubectl:
