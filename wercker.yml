@@ -11,7 +11,7 @@ build:
           echo "npm version $(npm -v) running"
     - script:
         name: copy artifact
-        code: cp src node_modules package.json VERSION.txt "$WERCKER_OUTPUT_DIR"
+        code: cp -r src node_modules package.json VERSION.txt "$WERCKER_OUTPUT_DIR"
 
 docker-push:
   steps:
