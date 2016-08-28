@@ -1,5 +1,8 @@
+box:
+    id: mhart/alpine-node:6.4
+    cmd: /bin/sh
+
 build:
-  box: mhart/alpine-node:6.4
   steps:
     - npm-install
     - npm-test
@@ -13,7 +16,6 @@ build:
         code: cp -r src node_modules package.json VERSION.txt "$WERCKER_OUTPUT_DIR"
 
 docker-push:
-  box: mhart/alpine-node:6.4
   steps:
     - script:
         name: git sha version info
@@ -22,6 +24,7 @@ docker-push:
           echo "version info..."
           cat VERSION.txt
     - internal/docker-scratch-push:
+        disable-sync: true
         username: _json_key
         password: $GCR_JSON_KEY_FILE
         repository: gcr.io/swarm-sandbox/jbaas
@@ -31,6 +34,7 @@ docker-push:
         ports: "8080"
         cmd: "npm start"
     - internal/docker-scratch-push:
+        disable-sync: true
         username: $DOCKERCLOUD_USERNAME
         password: $DOCKERCLOUD_PASSWORD
         repository: naartjie/jbaas
