@@ -16,6 +16,8 @@ docker-push:
         name: git sha version info
         code: |
           echo ${WERCKER_GIT_COMMIT:0:7} > VERSION.txt
+          echo "version info..."
+          cat VERSION.txt
     - internal/docker-push:
         username: _json_key
         password: $GCR_JSON_KEY_FILE
