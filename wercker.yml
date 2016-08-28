@@ -22,7 +22,7 @@ docker-push:
           echo ${WERCKER_GIT_COMMIT:0:7} > VERSION.txt
           echo "version info..."
           cat VERSION.txt
-    - internal/docker-push:
+    - internal/docker-scratch-push:
         username: _json_key
         password: $GCR_JSON_KEY_FILE
         repository: gcr.io/swarm-sandbox/jbaas
@@ -31,7 +31,7 @@ docker-push:
         env: "PORT=8080"
         ports: "8080"
         cmd: "npm start"
-    - internal/docker-push:
+    - internal/docker-scratch-push:
         username: $DOCKERCLOUD_USERNAME
         password: $DOCKERCLOUD_PASSWORD
         repository: naartjie/jbaas
